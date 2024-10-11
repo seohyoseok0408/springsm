@@ -14,11 +14,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th>Id01</th>
-            <th>pwd01</th>
-            <th>james</th>
-        </tr>
+        <c:forEach var="cust" items="${custs}">
+            <tr>
+                <td>${cust.id}</td>
+                <td>${cust.pwd}</td>
+                <td>${cust.name}</td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 </div>
