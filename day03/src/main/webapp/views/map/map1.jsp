@@ -18,7 +18,7 @@
         makemap:function(){
             let mapContainer = document.getElementById('map');// 지도를 표시할 div
             let mapOption = {
-                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                center: new kakao.maps.LatLng(36.799165, 127.074981),
                 level: 3 // 지도의 확대 레벨
             };
 
@@ -28,11 +28,33 @@
             let zoomControl = new kakao.maps.ZoomControl();
             this.map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-            let markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667);
+            var markerPosition  = new kakao.maps.LatLng(36.799165, 127.074981);
             let marker = new kakao.maps.Marker({
                 position: markerPosition
             });
             marker.setMap(this.map);
+
+            let iwContent = '<div style="padding:5px;">Hello World! <br><a href="https://map.kakao.com/link/map/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>';
+            let iwPosition = new kakao.maps.LatLng(36.799165, 127.074981); //인포윈도우 표시 위치입니다
+            let infowindow = new kakao.maps.InfoWindow({
+                position : iwPosition,
+                content : iwContent
+            });
+            kakao.maps.event.addListener(marker, 'mouseover', overHandler(this.map, marker, infowindow));
+            kakao.maps.event.addListener(marker, 'mouseout', outHandler(infowindow));
+
+            function overHandler(map, marker, infowindow) {
+                return function() {
+                    infowindow.open(map, marker);
+                }
+            }
+            function outHandler(infowindow) {
+                return function() {
+                    infowindow.close();
+                }
+            }
+            // infowindow.open(this.map, marker);
+
         },
         goseoul:function (){
             let moveLatLon = new kakao.maps.LatLng(37.553519, 126.980197);
@@ -60,9 +82,11 @@
     }
 </style>
 <div class="col-sm-10">
+
     <h2>Map1 Page</h2>
     <button id="sbtn">Seoul</button>
     <button id="bbtn">Busan</button>
-    <button id="jbtn">Juju</button>
-    <div id="map">
+    <button id="jbtn">Jeju</button>
+    <div id="map"></div>
+
 </div>
