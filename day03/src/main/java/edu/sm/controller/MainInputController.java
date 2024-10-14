@@ -33,4 +33,19 @@ public class MainInputController {
         }
         return next;
     }
+
+    @RequestMapping("/registerimpl")
+    public String registerimpl(Model model,
+                            @RequestParam("id") String id,
+                            @RequestParam("pwd") String pwd,
+                            @RequestParam("name") String name,
+                            HttpSession session) {
+        log.info("ID:"+id);
+        log.info("PWD:"+pwd);
+        log.info("NAME:"+name);
+        session.setAttribute("logined", id); // 자동로그인
+        model.addAttribute("center", "registerok");
+        model.addAttribute("id", id);
+        return "index";
+    }
 }

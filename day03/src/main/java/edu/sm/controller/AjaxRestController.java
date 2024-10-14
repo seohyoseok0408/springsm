@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
@@ -17,6 +18,18 @@ import java.util.Random;
 @RestController
 @Slf4j
 public class AjaxRestController {
+
+    @RequestMapping("/checkid")
+    public Object checkid(@RequestParam("rid") String id){
+        JSONObject obj = new JSONObject();
+        if(id.equals("qqqq") || id.equals("qqqqq")){
+            obj.put("result", "1");
+        } else {
+            obj.put("result", "0");
+        }
+
+        return obj;
+    }
 
     @RequestMapping("/getctime")
     public Object getcTime() {
