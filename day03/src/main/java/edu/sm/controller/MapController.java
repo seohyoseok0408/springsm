@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/map")
 public class MapController {
 
-    String dir = "js/";
+    String dir = "map/";
 
     @RequestMapping("")
     public String map(Model model) {
@@ -18,7 +18,7 @@ public class MapController {
         model.addAttribute("center", dir+"center");
         return "index";
     }
-    @RequestMapping("/js1")
+    @RequestMapping("/map1")
     public String map1(Model model) {
         model.addAttribute("left",  dir+"left");
         model.addAttribute("center", dir+"map1");
