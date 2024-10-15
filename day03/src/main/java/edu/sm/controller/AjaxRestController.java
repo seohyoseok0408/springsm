@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.print.attribute.standard.PrinterMakeAndModel;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -71,6 +72,20 @@ public class AjaxRestController {
 
         }
         return markers;
+    }
+
+    @RequestMapping("/getbike")
+    public Object getbike(){
+        JSONObject obj = new JSONObject();
+        double lat = 36.799165;
+        double lng = 127.074981;
+        Random r = new Random();
+        float num = r.nextFloat(1);
+        lat += num/10;
+        lng += num/10;
+        obj.put("lat", lat);
+        obj.put("lng", lng);
+        return obj;
     }
 }
 
