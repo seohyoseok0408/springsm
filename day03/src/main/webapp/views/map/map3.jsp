@@ -2,9 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
     #map{
-        width:600px;
-        height:500px;
+        width:500px;
+        height:400px;
         border:2px solid darkred;
+    }
+    #ms{
+        width:200px;
+        height:400px;
+        border:2px solid darkred;
+        overflow:auto;
     }
 </style>
 <script>
@@ -88,6 +94,8 @@
             let imgsrc1 = 'https://t1.daumcdn.net/localimg/localimages/07/2012/img/marker_p.png';
             let imgsrc2 = '<c:url value="/img/m.jpg"/> ';
 
+            $('#ms').empty();
+
             $(datas).each(function(index, item){
                 let imgsize = new kakao.maps.Size(30,30);
                 let markerimg = new kakao.maps.MarkerImage(imgsrc2, imgsize);
@@ -125,6 +133,11 @@
                         infowindow.close();
                     };
                 };
+                let content = '<p>';
+                content += '<a href="/map/go?target='+item.code+'">'+item.code+'</a>';
+                content += item.title;
+                content +='</p>';
+                $('#ms').append(content)
             });
 
         }
@@ -140,6 +153,11 @@
     <button id="sbtn">Seoul</button>
     <button id="bbtn">Busan</button>
     <button id="jbtn">Jeju</button>
-    <div id="map"></div>
-
+    <div class="row">
+        <div class="col-sm-7">
+            <div id="map"></div>
+        </div>
+        <div class="col-sm-5">
+            <div id="ms"></div>
+    </div>
 </div>
