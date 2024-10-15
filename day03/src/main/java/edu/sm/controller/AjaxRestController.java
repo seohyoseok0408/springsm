@@ -1,5 +1,6 @@
 package edu.sm.controller;
 
+import edu.sm.dto.Marker;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -10,10 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @RestController
 @Slf4j
@@ -58,4 +56,28 @@ public class AjaxRestController {
         }
         return arr;
     }
+
+    @RequestMapping("/getmarkers")
+    public Object getmarkers(@RequestParam("target") int target) {
+        // RestController에서는 객체를 리턴하면 JSON으로 변환해서 응답함
+        List<Marker> markers = new ArrayList<Marker>();
+        if (target == 100) {
+            markers.add(new Marker(37.564472, 126.990841, "순대국1", "ss1.jpg", 101));
+            markers.add(new Marker(37.544472, 126.970841, "순대국2", "ss2.jpg", 101));
+            markers.add(new Marker(37.564472, 126.970841, "순대국3", "ss3.jpg", 101));
+        } else if (target == 200) {
+
+        } else {
+
+        }
+        return markers;
+    }
 }
+
+
+
+
+
+
+
+
