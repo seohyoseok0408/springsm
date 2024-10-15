@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="col-sm-2">
 
-  <h3>JavaScript</h3>
+  <h3>Map</h3>
   <ul class="nav nav-pills flex-column">
     <li class="nav-item">
       <a class="nav-link" href="<c:url value="/map/map1"/>">map1</a>
