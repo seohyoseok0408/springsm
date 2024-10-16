@@ -15,6 +15,10 @@
         <li class="nav-item">
             <a class="nav-link" href="<c:url value="/chart/chart3"/>">chart3</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<c:url value="/chart/chart4"/>">chart4</a>
+        </li>
+
     </ul>
     <hr class="d-sm-none">
 </div>

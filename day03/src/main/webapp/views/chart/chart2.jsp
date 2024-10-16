@@ -15,7 +15,7 @@
             $('input[type=button]').click(()=>{
                 let year = $('#year').val();
                 this.getdata(year);
-            }); d
+            });
         },
         getdata:function(year) {
             $.ajax({
