@@ -26,6 +26,8 @@
 
 <div class="jumbotron text-center" style="margin-bottom:0">
     <h1>My First Bootstrap 4 Page</h1>
+    <img src="<c:url value="/img/sm.jpg"/> ">
+    <img src="<c:url value='/imgs/car.jpg' />" width="300" height="200" />
     <p>Resize this responsive page to see the effect!</p>
 </div>
 <ul class="nav justify-content-end">

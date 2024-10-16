@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @Slf4j
 @RequestMapping("/js")
-public class JsContoller {
+public class JsController {
 
     String dir = "js/";
 
@@ -20,6 +20,7 @@ public class JsContoller {
     }
     @RequestMapping("/js1")
     public String js1(Model model) {
+        log.info("click");
         model.addAttribute("left",  dir+"left");
         model.addAttribute("center", dir+"js1");
         return "index";
