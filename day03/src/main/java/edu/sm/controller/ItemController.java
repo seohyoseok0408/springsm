@@ -1,6 +1,6 @@
 package edu.sm.controller;
 
-import edu.sm.dto.Item;
+import edu.sm.app.dto.Item;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

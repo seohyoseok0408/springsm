@@ -47,6 +47,9 @@ dependencies {
     // Opencsv
     implementation group: 'com.opencsv', name: 'opencsv', version: '5.5.2'
 
+    // Mybatis & Mysql Driver
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+    runtimeOnly 'com.mysql:mysql-connector-j'
 
     implementation 'org.apache.httpcomponents:httpcore:4.4.15'
     implementation 'org.apache.httpcomponents:httpclient:4.5.13'
