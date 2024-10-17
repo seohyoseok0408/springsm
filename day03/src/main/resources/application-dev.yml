@@ -29,4 +29,5 @@ app:
   dir:
     imgdir: file:/Users/hyoseokseo/dev/springsm/imgs/
     logdir: file:/Users/hyoseokseo/dev/springsm/logs/
+    readlogdir: /Users/hyoseokseo/dev/springsm/logs/
 

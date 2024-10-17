@@ -8,87 +8,57 @@
         border: 1px solid rebeccapurple;
     }
 </style>
+
 <script>
     let chart4 = {
         init:function() {
-            this.getdata();
+            this.getdata(); // 데이터를 가져오는 함수 호출
         },
         getdata:function() {
-            this.display();
+            // Ajax로 서버에서 로그 데이터를 받아옴
+            $.ajax({
+                url: "/iot/power/logs",
+                method: "GET",
+                success: function(data) {
+                    chart4.display(data); // 받아온 데이터를 차트에 전달
+                },
+                error: function(err) {
+                    console.log("Failed to fetch logs: ", err);
+                }
+            });
         },
-        display:function() {
-            // On chart load, start an interval that adds points to the chart and animate
-// the pulsating marker.
-            const onChartLoad = function () {
-                const chart = this,
-                    series = chart.series[0];
-
-                setInterval(function () {
-                    const x = (new Date()).getTime(), // current time
-                        y = Math.random();
-
-                    series.addPoint([x, y], true, true);
-                }, 1000);
-            };
-
-// Create the initial data
-            const data = (function () {
-                const data = [];
-                const time = new Date().getTime();
-                for (let i = -19; i <= 0; i += 1) {
-                    data.push({
-                        x: time + i * 1000,
-                        y: 0
-                    });
-                }
-                return data;
-            }());
-
-// Plugin to add a pulsating marker on add point
-            Highcharts.addEvent(Highcharts.Series, 'addPoint', e => {
-                const point = e.point,
-                    series = e.target;
-
-                if (!series.pulse) {
-                    series.pulse = series.chart.renderer.circle()
-                        .add(series.markerGroup);
-                }
-
-                setTimeout(() => {
-                    series.pulse
-                        .attr({
-                            x: series.xAxis.toPixels(point.x, true),
-                            y: series.yAxis.toPixels(point.y, true),
-                            r: series.options.marker.radius,
-                            opacity: 1,
-                            fill: series.color
-                        })
-                        .animate({
-                            r: 20,
-                            opacity: 0
-                        }, {
-                            duration: 1000
-                        });
-                }, 1);
+        display:function(logData) {
+            // 로그 데이터를 파싱하여 차트에 사용할 형식으로 변환
+            const parsedData = logData.map(log => {
+                const parts = log.split(", ");
+                return {
+                    x: new Date(parts[0]).getTime(), // 로그 시간
+                    y: parseFloat(parts[1]) // 로그 값
+                };
             });
 
-
+            // 차트를 초기화하고, 이전의 임의의 데이터 생성 부분을 대체
             Highcharts.chart('container', {
                 chart: {
                     type: 'spline',
                     events: {
-                        load: onChartLoad
+                        load: function () {
+                            const series = this.series[0];
+                            setInterval(function () {
+                                if (parsedData.length > 0) {
+                                    const point = parsedData.shift(); // 파싱한 데이터 중 하나씩 차트에 추가
+                                    series.addPoint([point.x, point.y], true, true);
+                                }
+                            }, 2000); // 2초 간격으로 데이터 추가
+                        }
                     }
                 },
-
                 time: {
                     useUTC: false
                 },
-
                 title: {
-                    text: 'Live random data'
+                    text: 'Live Power Data from Logs'
                 },
-
                 accessibility: {
                     announceNewData: {
                         enabled: true,
@@ -101,55 +71,40 @@
                         }
                     }
                 },
-
                 xAxis: {
                     type: 'datetime',
-                    tickPixelInterval: 150,
-                    maxPadding: 0.1
+                    tickPixelInterval: 150
                 },
-
                 yAxis: {
                     title: {
-                        text: 'Value'
-                    },
-                    plotLines: [
-                        {
-                            value: 0,
-                            width: 1,
-                            color: '#808080'
-                        }
-                    ]
+                        text: 'Power Value'
+                    }
                 },
-
                 tooltip: {
                     headerFormat: '<b>{series.name}</b><br/>',
                     pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}<br/>{point.y:.2f}'
                 },
-
                 legend: {
                     enabled: false
                 },
-
                 exporting: {
                     enabled: false
                 },
-
-                series: [
-                    {
-                        name: 'Random data',
-                        lineWidth: 2,
-                        color: Highcharts.getOptions().colors[2],
-                        data
-                    }
-                ]
+                series: [{
+                    name: 'Power Data',
+                    lineWidth: 2,
+                    color: Highcharts.getOptions().colors[2],
+                    data: parsedData.slice(0, 20) // 로그 데이터 중 처음 20개를 초기 데이터로 설정
+                }]
             });
-
         }
     };
+
     $(function (){
         chart4.init();
-    })
+    });
 </script>
+
 <div class="col-sm-10">
     <h2>Chart4 Page</h2>
     <figure class="highcharts-figure">
@@ -158,5 +113,4 @@
             Chart showing data updating every second, with old data being removed.
         </p>
     </figure>
-
 </div>
