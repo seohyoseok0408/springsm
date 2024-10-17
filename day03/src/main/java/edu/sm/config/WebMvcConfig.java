@@ -11,6 +11,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     String imgdir;
     @Value("${app.dir.logdir}")
     String logdir;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         log.info("================"+imgdir);
