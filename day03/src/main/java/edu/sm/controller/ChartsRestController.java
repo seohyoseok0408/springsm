@@ -137,9 +137,13 @@ public class ChartsRestController {
         String [] lineData = null;
         JSONArray jsonArray1 = new JSONArray();
         JSONArray timeArray1 = new JSONArray();
+        String endLine = "";
+        String endTime = "";
         while((lineData = reader.readNext()) != null) {
             timeArray1.add(lineData[0]);
             jsonArray1.add(Double.parseDouble(lineData[1]));
+            endTime = lineData[0];
+            endLine = lineData[1];
         }
 
         obj.put("data", jsonArray1);
@@ -147,7 +151,9 @@ public class ChartsRestController {
         jsonArray.add(obj);
         result.put("result", jsonArray);
         result.put("x", timeArray1);
-        log.info(result.toJSONString());
+        result.put("endtime", endTime);
+        result.put("endline", Double.parseDouble(endLine));
+//        log.info(result.toJSONString());
         return result;
     }
 }
