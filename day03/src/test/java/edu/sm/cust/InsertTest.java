@@ -20,7 +20,7 @@ public class InsertTest {
     void contextLoads() {
        try {
            CustDto custDto = CustDto.builder()
-                   .id("id05")
+                   .id("id07")
                    .pwd("1234")
                    .name("seohyoseok")
                    .build();
