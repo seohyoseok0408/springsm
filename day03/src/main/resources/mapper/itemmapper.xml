@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sm.app.repository.ItemRepository">
+
+    <!-- 단일 항목 조회 -->
+    <select id="selectOne" parameterType="int" resultType="ItemDto">
+        SELECT * FROM item WHERE item_id = #{itemId}
+    </select>
+
+    <!-- 전체 항목 조회 -->
+    <select id="select" resultType="ItemDto">
+        SELECT * FROM item
+    </select>
+
+    <!-- 항목 삽입 -->
+    <insert id="insert" parameterType="ItemDto">
+        INSERT INTO item (item_name, item_price, img_name, reg_date, update_date)
+        VALUES (#{itemName}, #{itemPrice}, #{imgName}, #{regDate}, #{updateDate})
+    </insert>
+
+    <!-- 항목 업데이트 -->
+    <update id="update" parameterType="ItemDto">
+        UPDATE item
+        SET item_name = #{itemName}, item_price = #{itemPrice}, img_name = #{imgName},
+            reg_date = #{regDate}, update_date = #{updateDate}
+        WHERE item_id = #{itemId}
+    </update>
+
+    <!-- 항목 삭제 -->
+    <delete id="delete" parameterType="int">
+        DELETE FROM item WHERE item_id = #{itemId}
+    </delete>
+
+    <!-- 이름으로 항목 검색 -->
+    <select id="findByName" parameterType="String" resultType="ItemDto">
+        SELECT * FROM item WHERE item_name LIKE CONCAT('%', #{itemName}, '%');
+    </select>
+
+</mapper>
