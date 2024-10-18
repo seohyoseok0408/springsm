@@ -17,6 +17,7 @@ public class CustService implements SMService<String, CustDto> {
 
     @Override
     public void add(CustDto custDto) throws Exception {
+        System.out.println(custDto);
         custRepository.insert(custDto);
     }
 
