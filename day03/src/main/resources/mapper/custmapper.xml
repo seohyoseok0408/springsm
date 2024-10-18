@@ -20,4 +20,7 @@
         DELETE FROM cust WHERE id=#{id}
     </delete>
 
+    <select id="findByName" parameterType="String" resultType="CustDto">
+        SELECT * FROM cust where name LIKE CONCAT('%', #{name}, '%');
+    </select>
 </mapper>

@@ -41,4 +41,8 @@ public class CustService implements SMService<String, CustDto> {
     public List<CustDto> get() throws Exception {
         return custRepository.select();
     }
+
+    public List<CustDto> getByName(String name) throws Exception {
+        return custRepository.findByName(name);
+    }
 }
