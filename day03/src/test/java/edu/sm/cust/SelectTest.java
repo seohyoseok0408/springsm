@@ -17,10 +17,8 @@ class SelectTest {
     @Test
     void contextLoads() {
         try {
-            List<CustDto> list = custService.get();
-            for (CustDto custDto : list) {
-                System.out.println(custDto);
-            }
+            // logbacksql을 이용하여 콘솔에 출력
+            custService.get();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
