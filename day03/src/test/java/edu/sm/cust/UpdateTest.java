@@ -16,7 +16,7 @@ public class UpdateTest {
     @Autowired
     CustService custService;
 
-    String id = "cust001";
+    String id = "cust002";
     @Test
     void contextLoads() {
         try {

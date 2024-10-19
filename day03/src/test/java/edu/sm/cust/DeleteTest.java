@@ -16,7 +16,7 @@ public class DeleteTest {
     @Autowired
     CustService custService;
 
-    String id = "id05";
+    String id = "cust001";
 
     @Test
     void contextLoads() {

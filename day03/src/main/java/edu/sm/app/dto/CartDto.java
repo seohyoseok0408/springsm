@@ -5,18 +5,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemDto {
+public class CartDto {
+    private int cartId;
+    private String custId;
     private int itemId;
-    private String itemName;
-    private long itemPrice;
-    private String imgName;
+    private int count;
     private LocalDateTime regDate;
-    private LocalDateTime updateDate;
+    private ItemDto item;
 }

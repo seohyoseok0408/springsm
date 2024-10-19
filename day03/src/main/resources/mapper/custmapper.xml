@@ -5,7 +5,7 @@
 <mapper namespace="edu.sm.app.repository.CustRepository">
 
     <select id="selectOne" parameterType="String" resultType="CustDto">
-        SELECT * FROM cust WHERE id=#{id}
+        SELECT * FROM cust WHERE cust_id=#{id}
     </select>
     <select id="select" resultType="CustDto">
         SELECT * FROM cust
@@ -14,13 +14,13 @@
         INSERT INTO cust VALUES (#{id},#{pwd},#{name})
     </insert>
     <update id="update" parameterType="CustDto">
-        UPDATE cust SET pwd=#{pwd},name=#{name} WHERE id=#{id}
+        UPDATE cust SET cust_pwd=#{pwd},cust_name=#{name} WHERE cust_id=#{id}
     </update>
     <delete id="delete" parameterType="String">
-        DELETE FROM cust WHERE id=#{id}
+        DELETE FROM cust WHERE cust_id=#{id}
     </delete>
 
     <select id="findByName" parameterType="String" resultType="CustDto">
-        SELECT * FROM cust where name LIKE CONCAT('%', #{name}, '%');
+        SELECT * FROM cust where cust_name LIKE CONCAT('%', #{name}, '%');
     </select>
 </mapper>

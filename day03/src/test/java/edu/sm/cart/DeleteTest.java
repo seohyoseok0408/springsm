@@ -1,22 +1,23 @@
-package edu.sm.cust;
+package edu.sm.cart;
 
-import edu.sm.app.service.CustService;
+import edu.sm.app.service.CartService;
+import edu.sm.app.service.ItemService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class SelectOneTest {
+public class DeleteTest {
 
     @Autowired
-    CustService custService;
+    CartService cartService;
 
-    String id = "cust002";
+    int id = 2;
 
     @Test
-    void contextLoads() {
+    public void testDelete() {
         try {
-            custService.get(id);
+            cartService.del(id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

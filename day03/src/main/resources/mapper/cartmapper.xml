@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sm.app.repository.CartRepository">
+
+    <!-- 결과 매핑 -->
+    <resultMap id="CartWithItemMap" type="CartDto">
+        <result property="cartId" column="cart_id" />
+        <result property="custId" column="cust_id" />
+        <result property="itemId" column="c_item_id" />
+        <result property="count" column="count" />
+        <result property="regDate" column="reg_date" />
+        <!-- item 필드 매핑 -->
+        <association property="item" javaType="ItemDto">
+            <result property="itemId" column="i_item_id" />
+            <result property="itemName" column="i_item_name" />
+            <result property="itemPrice" column="i_item_price" />
+            <result property="imgName" column="i_img_name" />
+            <result property="regDate" column="i_reg_date" />
+            <result property="updateDate" column="i_update_date" />
+        </association>
+    </resultMap>
+
+    <!-- 단일 카트 조회 시 카트와 아이템 정보 반환 -->
+    <select id="selectOne" parameterType="int" resultMap="CartWithItemMap">
+        SELECT c.cart_id, c.cust_id, c.item_id as c_item_id, c.count, c.reg_date,
+               i.item_id AS i_item_id, i.item_name AS i_item_name,
+               i.item_price AS i_item_price, i.img_name AS i_img_name,
+               i.reg_date AS i_reg_date, i.update_date AS i_update_date
+        FROM cart c
+                 JOIN item i ON c.item_id = i.item_id
+        WHERE c.cart_id = #{cartId}
+    </select>
+
+    <!-- 전체 카트 조회 시 카트와 아이템 정보 반환 -->
+    <select id="select" resultMap="CartWithItemMap">
+        SELECT c.cart_id, c.cust_id, c.item_id, c.count, c.reg_date,
+               i.item_id AS i_item_id, i.item_name AS i_item_name,
+               i.item_price AS i_item_price, i.img_name AS i_img_name,
+               i.reg_date AS i_reg_date, i.update_date AS i_update_date
+        FROM cart c
+                 JOIN item i ON c.item_id = i.item_id
+    </select>
+
+
+    <!-- 카트 항목 삽입 -->
+    <insert id="insert" parameterType="CartDto">
+        INSERT INTO cart (cust_id, item_id, count)
+        VALUES (#{custId}, #{itemId}, #{count})
+    </insert>
+
+    <!-- 카트 항목 업데이트 -->
+    <update id="update" parameterType="CartDto">
+        UPDATE cart
+        SET cust_id = #{custId}, item_id = #{itemId}, count = #{count}
+        WHERE cart_id = #{cartId}
+    </update>
+
+    <!-- 카트 항목 삭제 -->
+    <delete id="delete" parameterType="int">
+        DELETE FROM cart WHERE cart_id = #{cartId}
+    </delete>
+
+
+</mapper>
