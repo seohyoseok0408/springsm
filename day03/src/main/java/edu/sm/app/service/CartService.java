@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class CartService implements SMService<Integer, CartDto> {
+public class CartService implements SMService<CartDto, CartDto> {
 
     final CartRepository cartRepository;
 
@@ -29,13 +29,13 @@ public class CartService implements SMService<Integer, CartDto> {
     }
 
     @Override
-    public void del(Integer integer) throws Exception {
-        cartRepository.delete(integer);
+    public void del(CartDto cartDto) throws Exception {
+        cartRepository.delete(cartDto);
     }
 
     @Override
-    public CartDto get(Integer integer) throws Exception {
-        return cartRepository.selectOne(integer);
+    public CartDto get(CartDto cartDto) throws Exception {
+        return cartRepository.selectOne(cartDto);
     }
 
     @Override

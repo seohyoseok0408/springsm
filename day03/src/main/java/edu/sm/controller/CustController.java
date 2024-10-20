@@ -31,11 +31,11 @@ public class CustController {
     @RequestMapping("/get")
     public String get(Model model) {
         List<CustDto> custs = new ArrayList<>();
-        custs.add(CustDto.builder().id("id1").pwd("pwd1").name("name1").build());
-        custs.add(CustDto.builder().id("id2").pwd("pwd2").name("name2").build());
-        custs.add(CustDto.builder().id("id3").pwd("pwd3").name("name3").build());
-        custs.add(CustDto.builder().id("id4").pwd("pwd4").name("name4").build());
-        custs.add(CustDto.builder().id("id5").pwd("pwd5").name("name5").build());
+        custs.add(CustDto.builder().custId("id1").custPwd("pwd1").custName("name1").build());
+        custs.add(CustDto.builder().custId("id2").custPwd("pwd2").custName("name2").build());
+        custs.add(CustDto.builder().custId("id3").custPwd("pwd3").custName("name3").build());
+        custs.add(CustDto.builder().custId("id4").custPwd("pwd4").custName("name4").build());
+        custs.add(CustDto.builder().custId("id5").custPwd("pwd5").custName("name5").build());
         model.addAttribute("left",dir+"left");
         model.addAttribute("center",dir+"get");
         model.addAttribute("custs",custs);

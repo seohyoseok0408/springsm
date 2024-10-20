@@ -9,13 +9,12 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class CartDto {
-    private int cartId;
-    private String custId;
-    private int itemId;
-    private int count;
-    private LocalDateTime regDate;
-    private ItemDto item;
+    private String cartUserId;
+    private int cartItemId;
+    private int cartCount;
+    private LocalDateTime cartRegDate;
+    private ItemDto itemdto;
 }

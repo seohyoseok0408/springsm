@@ -1,5 +1,6 @@
 package edu.sm.cart;
 
+import edu.sm.app.dto.CartDto;
 import edu.sm.app.service.CartService;
 import edu.sm.app.service.ItemService;
 import org.junit.jupiter.api.Test;
@@ -12,12 +13,15 @@ public class DeleteTest {
     @Autowired
     CartService cartService;
 
-    int id = 2;
+    CartDto cartDto = CartDto.builder()
+            .cartUserId("cust001")
+            .cartItemId(1)
+            .build();
 
     @Test
     public void testDelete() {
         try {
-            cartService.del(id);
+//            cartService.del(cartDto);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

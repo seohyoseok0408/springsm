@@ -15,16 +15,15 @@ public class SelectOneTest {
     @Autowired
     CartService cartService;
 
-    CartDto cartDto;
-    int id = 4;
+    CartDto cartDto = CartDto.builder()
+            .cartUserId("cust001")
+            .cartItemId(1)
+            .build();
 
     @Test
     public void testSelectOne() {
         try {
-            cartDto = cartService.get(id);
-            log.info("cartDto: {}", cartDto);
-            System.out.println("HEREHERE!!!!!");
-            System.out.println(cartDto);
+            cartDto = cartService.get(cartDto);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

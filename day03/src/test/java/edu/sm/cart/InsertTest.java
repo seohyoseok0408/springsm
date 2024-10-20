@@ -20,10 +20,9 @@ public class InsertTest {
     public void testInsert() {
         try {
             CartDto cartDto = CartDto.builder()
-                    .cartId(0)
-                    .custId("cust001")
-                    .itemId(1)
-                    .count(8)
+                    .cartUserId("cust001")
+                    .cartItemId(1)
+                    .cartCount(3)
                     .build();
             cartService.add(cartDto);
         } catch (Exception e) {

@@ -23,8 +23,8 @@ public class UpdateTest {
     @Test
     public void testUpdate() {
         try {
-            cartDto = cartService.get(id);
-            cartDto.setCount(10);
+//            cartDto = cartService.get(id);
+            cartDto.setCartCount(10);
 
             cartService.modify(cartDto);
         } catch (Exception e) {

@@ -21,8 +21,8 @@ public class UpdateTest {
     void contextLoads() {
         try {
             CustDto custDto = custService.get(id);
-            custDto.setPwd("1234");
-            custDto.setName("seohyoseok");
+            custDto.setCustPwd("1234");
+            custDto.setCustName("seohyoseok");
             custService.modify(custDto);
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -11,5 +11,5 @@ import java.util.Map;
 
 @Repository
 @Mapper
-public interface CartRepository extends SMRepository<Integer, CartDto> {
+public interface CartRepository extends SMRepository<CartDto, CartDto> {
 }
