@@ -22,11 +22,21 @@
 
     <!-- 단일 카트 조회 시 카트와 아이템 정보 반환 -->
     <select id="selectOne" parameterType="cartDto" resultType="CartDto">
-        SELECT * FROM cart WHERE cart_item_id=#{cartItemId} and cart_user_id=#{cartUserId}
+        select
+            cart_user_id,
+            cart_item_id,
+            cart_count,
+            cart_reg_date,
+            item_name,
+            item_price,
+            img_name
+        from cart as c
+                 inner join item i on c.cart_item_id = i.item_id
+        WHERE cart_item_id=#{cartItemId} and cart_user_id=#{cartUserId}
     </select>
 
     <!-- 전체 카트 조회 시 카트와 아이템 정보 반환 -->
-    <select id="select" resultType="cartDto" fetchSize="100">
+    <select id="select" parameterType="cartDto" fetchSize="100">
         select
             cart_user_id,
             cart_item_id,
@@ -48,7 +58,7 @@
         UPDATE cart SET cart_count=#{cartCount} WHERE cart_user_id=#{cartUserId} and  cart_item_id=#{cartItemId}
     </update>
     <delete id="delete" parameterType="cartDto">
-        DELETE FROM cart WHERE cart_item_id=#{itemId} and cart_user_id=#{custId}
+        DELETE FROM cart WHERE cart_item_id=#{cartItemId} and cart_user_id=#{cartUserId}
     </delete>
 
 

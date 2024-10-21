@@ -4,6 +4,7 @@ import edu.sm.app.dto.CartDto;
 import edu.sm.app.dto.ItemDto;
 import edu.sm.app.service.CartService;
 import edu.sm.app.service.ItemService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,20 +12,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDateTime;
 
 @SpringBootTest
+@Slf4j
 public class UpdateTest {
 
     @Autowired
     CartService cartService;
 
-    CartDto cartDto;
-
-    int id = 4;
+    CartDto cartDto = CartDto.builder()
+            .cartUserId("cust001")
+            .cartItemId(1)
+            .build();
 
     @Test
     public void testUpdate() {
         try {
-//            cartDto = cartService.get(id);
-            cartDto.setCartCount(10);
+            cartDto = cartService.get(cartDto);
+            log.info(cartDto.toString());
+            cartDto.setCartCount(5);
 
             cartService.modify(cartDto);
         } catch (Exception e) {

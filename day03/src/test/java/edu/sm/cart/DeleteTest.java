@@ -21,7 +21,7 @@ public class DeleteTest {
     @Test
     public void testDelete() {
         try {
-//            cartService.del(cartDto);
+            cartService.del(cartDto);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
