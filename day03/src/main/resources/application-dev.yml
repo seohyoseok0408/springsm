@@ -9,7 +9,7 @@ server:
 spring:
   mvc:
     view:
-      prefix: /WEB-INF/views/
+      prefix: /views/
       suffix: .jsp
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy

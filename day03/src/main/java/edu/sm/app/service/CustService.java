@@ -19,7 +19,6 @@ public class CustService implements SMService<String, CustDto> {
     @Override
     public void add(CustDto custDto) throws Exception {
         custRepository.insert(custDto);
-        custRepository.insert(custDto); // ERROR (PK 중복)
     }
 
     @Override

@@ -1,6 +1,9 @@
 package edu.sm.controller;
 
+import edu.sm.app.dto.CustDto;
 import edu.sm.app.dto.Marker;
+import edu.sm.app.service.CustService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -14,17 +17,20 @@ import java.util.*;
 
 @RestController
 @Slf4j
+@RequiredArgsConstructor
 public class AjaxRestController {
 
-    @RequestMapping("/checkid")
-    public Object checkid(@RequestParam("rid") String id){
-        JSONObject obj = new JSONObject();
-        if(id.equals("qqqq") || id.equals("qqqqq")){
-            obj.put("result", "1");
-        } else {
-            obj.put("result", "0");
-        }
+    final CustService custService;
 
+    @RequestMapping("/checkid")
+    public Object checkid(@RequestParam("rid") String id) throws Exception{
+        JSONObject obj = new JSONObject();
+        CustDto custDto = null;
+        custDto = custService.get(id);
+        obj.put("result", "0");
+        if (custDto != null) {
+            obj.put("result", "1");
+        }
         return obj;
     }
 
