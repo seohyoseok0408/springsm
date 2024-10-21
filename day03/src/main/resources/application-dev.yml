@@ -30,7 +30,7 @@ mybatis:
 # Logging Setting
 logging:
   level:
-    root: info
+    root: debug
 
 # Application Environment Setting
 app:

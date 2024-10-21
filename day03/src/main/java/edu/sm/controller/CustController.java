@@ -59,13 +59,13 @@ public class CustController {
     public String updateimpl(Model model,
                              CustDto custDto) throws Exception {
         custService.modify(custDto);
-        return "redirect:/cust/detail?id="+custDto.getCustId();
+        return "redirect:/car/detail?id="+custDto.getCustId();
     }
 
     @RequestMapping("/deleteimpl")
     public String deleteimpl(Model model,
                              @RequestParam("id") String id) throws Exception {
         custService.del(id);
-        return "redirect:/cust/get";
+        return "redirect:/car/info";
     }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sm.app.repository.CarRepository">
+
+    <select id="selectOne" parameterType="Integer" resultType="CarDto">
+        SELECT * FROM car WHERE car_id=#{carId}
+    </select>
+    <select id="select" resultType="CarDto">
+        SELECT * FROM car
+    </select>
+    <insert id="insert" parameterType="CarDto">
+        INSERT INTO car (car_id, car_model, car_price, img_name, reg_date)
+        VALUES (#{carId},#{carModel},#{carPrice},#{imgName}, #{regDate})
+    </insert>
+    <update id="update" parameterType="CarDto">
+        UPDATE car SET car_price=#{carPrice},img_name=#{imgName} WHERE car_id=#{carId}
+    </update>
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM car WHERE car_id=#{carId}
+    </delete>
+
+</mapper>

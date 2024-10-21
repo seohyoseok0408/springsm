@@ -73,6 +73,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="<c:url value="/chart"/> ">Chart</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<c:url value="/car"/> ">Car</a>
+            </li>
             <c:if test="${sessionScope.loginid != null}">
                 <li class="nav-item">
                     <a class="nav-link" href="<c:url value="/cust"/> ">Cust</a>
