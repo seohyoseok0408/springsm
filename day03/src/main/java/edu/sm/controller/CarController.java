@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.smartcardio.Card;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -44,6 +46,7 @@ public class CarController {
     public String info(Model model) throws Exception {
         List<CarDto> cars= new ArrayList<>();
         cars = carService.get();
+
         model.addAttribute("cars", cars);
         model.addAttribute("left",dir+"left");
         model.addAttribute("center",dir+"info");

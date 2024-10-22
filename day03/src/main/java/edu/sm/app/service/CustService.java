@@ -1,6 +1,9 @@
 package edu.sm.app.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import edu.sm.app.dto.CustDto;
+import edu.sm.app.dto.Search;
 import edu.sm.app.frame.SMService;
 import edu.sm.app.repository.CustRepository;
 import lombok.RequiredArgsConstructor;
@@ -43,5 +46,15 @@ public class CustService implements SMService<String, CustDto> {
 
     public List<CustDto> getByName(String name) throws Exception {
         return custRepository.findByName(name);
+    }
+
+    public Page<CustDto> getPage(int pageNo) throws Exception {
+        PageHelper.startPage(pageNo, 5); // 3: 한화면에 출력되는 개수
+        return custRepository.getpage();
+    }
+
+    public Page<CustDto> getFindPage(Search search, int pageNo) throws Exception {
+        PageHelper.startPage(pageNo, 2);
+        return custRepository.getfindpage(search);
     }
 }

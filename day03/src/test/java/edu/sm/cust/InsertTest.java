@@ -19,11 +19,7 @@ public class InsertTest {
     @Test
     void contextLoads() {
        try {
-           CustDto custDto = CustDto.builder()
-                   .custId("id07")
-                   .custPwd("1234")
-                   .custName("seohyoseok")
-                   .build();
+           CustDto custDto = CustDto.builder().custId("id65").custPwd("pwd65").custName("seohyoseok").build();
            custService.add(custDto);
        } catch (Exception e) {
               throw new RuntimeException(e);
