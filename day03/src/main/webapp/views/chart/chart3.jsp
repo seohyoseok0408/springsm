@@ -93,7 +93,6 @@
         }, 1);
       });
 
-
       Highcharts.chart('container2', {
         chart: {
           type: 'spline',

@@ -1,20 +1,26 @@
 package edu.sm.controller;
 
+import com.github.pagehelper.PageInfo;
+import edu.sm.app.dto.ItemDto;
+import edu.sm.app.dto.Search;
+import edu.sm.app.service.ItemService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @Slf4j
 @RequestMapping("/item")
 public class ItemController {
 
+    private final ItemService itemService;
     String dir = "item/";
+
+    public ItemController(ItemService itemService) {
+        this.itemService = itemService;
+    }
 
     @RequestMapping("")
     public String item(Model model) {
@@ -22,21 +28,39 @@ public class ItemController {
         model.addAttribute("center",dir+"center");
         return "index";
     }
-    @RequestMapping("/add")
-    public String add(Model model) {
+
+    @RequestMapping("/search")
+    public String search(Model model) throws Exception {
         model.addAttribute("left",dir+"left");
-        model.addAttribute("center",dir+"add");
+        model.addAttribute("center",dir+"search");
         return "index";
     }
-    @RequestMapping("/get")
-    public String get(Model model) {
-//        List<Item> items = new ArrayList<>();
-//        items.add(Item.builder().id(1).name("name1").price(1000).imgname("p1.jpg").regdate(LocalDate.parse("2021-01-01")).build());
-//        items.add(Item.builder().id(2).name("name2").price(2000).imgname("p2.jpg").regdate(LocalDate.parse("2021-02-02")).build());
-//        items.add(Item.builder().id(3).name("name3").price(3000).imgname("p3.jpg").regdate(LocalDate.parse("2021-03-03")).build());
-//        model.addAttribute("left",dir+"left");
-//        model.addAttribute("center",dir+"get");
-//        model.addAttribute("items",items);
+
+    @RequestMapping("/findimpl")
+    public String findimpl(Model model, Search search, @RequestParam(value = "pageNo", defaultValue = "1") int pageNo) throws Exception {
+        log.info("search: "+search.toString());
+        PageInfo<ItemDto> i;
+        try {
+            i = new PageInfo<>(itemService.getFindPage(search, pageNo), 3);
+        } catch (Exception e) {
+            throw new Exception("시스템 장애: ER0001");
+        }
+        model.addAttribute("cpage", i);
+        model.addAttribute("target", "item");
+
+        model.addAttribute("search", search);
+        model.addAttribute("left", dir+"left");
+        model.addAttribute("center", dir+"search");
+        return "index";
+    }
+
+    @RequestMapping("/detail")
+    public String detail(Model model, @RequestParam("id") Integer id) throws Exception {
+        ItemDto itemDto = null;
+        itemDto = itemService.get(id);
+        model.addAttribute("item",itemDto);
+        model.addAttribute("left",dir+"left");
+        model.addAttribute("center",dir+"detail");
         return "index";
     }
 }

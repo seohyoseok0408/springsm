@@ -1,11 +1,15 @@
 package edu.sm.app.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import edu.sm.app.dto.CustDto;
 import edu.sm.app.dto.ItemDto;
+import edu.sm.app.dto.Search;
 import edu.sm.app.frame.SMService;
 import edu.sm.app.repository.CustRepository;
 import edu.sm.app.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +19,9 @@ import java.util.List;
 public class ItemService implements SMService<Integer, ItemDto> {
 
     final ItemRepository itemRepository;
+
+    @Value("${app.dir.uploaddir}")
+    String imgdir;
 
     @Override
     public void add(ItemDto itemDto) throws Exception {
@@ -41,7 +48,12 @@ public class ItemService implements SMService<Integer, ItemDto> {
         return itemRepository.select();
     }
 
-    public List<CustDto> getByName(String name) throws Exception {
+    public List<ItemDto> getByName(String name) throws Exception {
         return itemRepository.findByName(name);
+    }
+
+    public Page<ItemDto> getFindPage(Search search, int pageNo) throws Exception {
+        PageHelper.startPage(pageNo, 5);
+        return itemRepository.getfindpage(search);
     }
 }

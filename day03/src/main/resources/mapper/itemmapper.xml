@@ -13,7 +13,12 @@
     <select id="select" resultType="ItemDto">
         SELECT * FROM item
     </select>
-
+    <select id="getfindpage" resultType="itemDto" parameterType="search">
+        SELECT * FROM item WHERE 1=1
+        <if test="keyword == 'name'">
+            AND item_name LIKE CONCAT('%', #{search}, '%')
+        </if>
+    </select>
     <!-- 항목 삽입 -->
     <insert id="insert" parameterType="ItemDto">
         INSERT INTO item (item_name, item_price, img_name, reg_date, update_date)

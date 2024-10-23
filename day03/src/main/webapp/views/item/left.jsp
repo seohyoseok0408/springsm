@@ -7,10 +7,7 @@
     <h3>Item</h3>
     <ul class="nav nav-pills flex-column">
         <li class="nav-item">
-            <a class="nav-link" href="<c:url value="/item/add"/> ">add</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="<c:url value="/item/get"/>">get</a>
+            <a class="nav-link" href="<c:url value="/item/search"/> ">Search</a>
         </li>
     </ul>
     <hr class="d-sm-none">

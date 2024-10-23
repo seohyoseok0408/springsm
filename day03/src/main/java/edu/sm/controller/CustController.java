@@ -31,6 +31,17 @@ public class CustController {
         model.addAttribute("center",dir+"center");
         return "index";
     }
+
+    @RequestMapping("/detail")
+    public String detail(Model model, @RequestParam("id") String id) throws Exception {
+        CustDto custDto = null;
+        custDto = custService.get(id);
+        model.addAttribute("cust",custDto);
+        model.addAttribute("left",dir+"left");
+        model.addAttribute("center",dir+"detail");
+        return "index";
+    }
+
     @RequestMapping("/add")
     public String add(Model model) {
         model.addAttribute("left",dir+"left");
@@ -65,8 +76,6 @@ public class CustController {
 
     @RequestMapping("/search")
     public String search(Model model) throws Exception {
-        CustDto custDto = null;
-        model.addAttribute("cust",custDto);
         model.addAttribute("left",dir+"left");
         model.addAttribute("center",dir+"search");
         return "index";

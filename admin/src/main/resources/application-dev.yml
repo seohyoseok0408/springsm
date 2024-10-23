@@ -1,0 +1,44 @@
+server:
+  port: 81
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+
+# SpringBoot Environment Setting
+spring:
+  mvc:
+    view:
+      prefix: /views/
+      suffix: .jsp
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/smdb?characterEncoding=utf8
+    #    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    url: jdbc:mysql://127.0.0.1:3306/smdb?characterEncoding=utf8
+    username: ENC(1VR3jmaTU5QHEqeAw0Iqxw==)
+    password: ENC(f0yNs6ribiQd7x6OwNcaQg==)
+
+# Mybatis Setting
+mybatis:
+  type-aliases-package: edu.sm.app.dto
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+# Logging Setting
+logging:
+  level:
+    root: info
+
+# Application Environment Setting
+app:
+  url:
+    server-url: http://localhost:81
+  dir:
+    imgdir: file:/Users/hyoseokseo/dev/springsm/imgs/
+    uploaddir: /Users/hyoseokseo/dev/springsm/imgs/
+    logdir: file:/Users/hyoseokseo/dev/springsm/logs/
+    readlogdir: /Users/hyoseokseo/dev/springsm/logs/
+
