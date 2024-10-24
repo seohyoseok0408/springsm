@@ -49,6 +49,19 @@
                  inner join item i on c.cart_item_id = i.item_id
     </select>
 
+    <select id="selectByCustId" parameterType="cartDto" fetchSize="100">
+        select
+            cart_user_id,
+            cart_item_id,
+            cart_count,
+            cart_reg_date,
+            item_name,
+            item_price,
+            img_name
+        from cart as c
+                 inner join item i on c.cart_item_id = i.item_id
+        where cart_user_id=#{cartUserId}
+    </select>
 
     <insert id="insert" parameterType="cartDto">
         insert into cart values (#{cartUserId},#{cartItemId},#{cartCount},SYSDATE() )

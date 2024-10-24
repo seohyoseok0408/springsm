@@ -35,6 +35,7 @@
     <table class="table" id="idata">
         <thead class="thead-dark">
         <tr>
+            <th>Image</th>
             <th>Name</th>
             <th>Date</th>
             <th>Price</th>
@@ -43,14 +44,21 @@
         <tbody>
         <c:forEach var="i" items="${cpage.getList()}">
             <tr>
-                <td><a href="/item/detail?id=${i.itemId}">${i.itemName}</a></td>
                 <td>
-                    <fmt:parseDate value="${i.regDate}"
-                                   pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both" />
-                    <fmt:formatDate pattern="yyyy년 MM월 dd일 HH시 mm분" value="${ parsedDateTime }" />
+                    <a href="/item/detail?id=${i.itemId}">
+                        <img src="<c:url value="/imgs"/>/${i.imgName}">
+                    </a>
                 </td>
                 <td>
-                    <fmt:formatNumber type="number" pattern="###,###원" value="${i.itemPrice}" /></td>
+                        ${i.itemName}
+                </td>
+                <td>
+                    <fmt:parseDate value="${i.regDate}"
+                                   pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
+                    <fmt:formatDate pattern="yyyy년 MM월 dd일 HH시 mm분" value="${ parsedDateTime }"/>
+                </td>
+                <td>
+                    <fmt:formatNumber type="number" pattern="###,###원" value="${i.itemPrice}"/></td>
                 </td>
             </tr>
         </c:forEach>

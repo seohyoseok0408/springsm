@@ -12,4 +12,5 @@ import java.util.Map;
 @Repository
 @Mapper
 public interface CartRepository extends SMRepository<CartDto, CartDto> {
+    List<CartDto> selectByCustId(String custId) throws Exception;
 }
