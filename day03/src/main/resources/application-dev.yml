@@ -39,4 +39,7 @@ app:
     uploaddir: /Users/hyoseokseo/dev/springsm/imgs/
     logdir: file:/Users/hyoseokseo/dev/springsm/logs/
     readlogdir: /Users/hyoseokseo/dev/springsm/logs/
-
+  key:
+    wkey: ENC(f7bz90L8Gr/foAz20x1NUyyDSeXSNlJdsozKatTP6xlaflUZDkennGbXkffTsvd3cei99EnQNJ+2uuJJjdpiIXPMADl0y+u/QJA9tJkWsu7Z8DZifInShfbjmKRwJoH1+tysHt31aNE=)
+    algo: PBEWithMD5AndDES
+    skey: mykey

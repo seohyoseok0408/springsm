@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 public class MainInputController {
 
     final CustService custService;
+    final BCryptPasswordEncoder passwordEncoder;
 
     @RequestMapping("/logoutimpl")
     public String logoutimpl(HttpSession session, Model model){
@@ -37,7 +39,7 @@ public class MainInputController {
         String next = "redirect:/";
         CustDto custDto = null;
         custDto = custService.get(id); // id로 검색된 Cust 정보
-        if (custDto != null && custDto.getCustPwd().equals(pwd)) {
+        if (custDto != null && passwordEncoder.matches(pwd, custDto.getCustPwd())) {
             session.setAttribute("loginid", custDto);
         } else {
             model.addAttribute("center", "loginfail");
@@ -53,6 +55,7 @@ public class MainInputController {
         log.info("Cust Info:" + custDto.toString());
 
         try {
+            custDto.setCustPwd(passwordEncoder.encode(custDto.getCustPwd()));
             custService.add(custDto);
         } catch (DuplicateKeyException e) {
             throw e;
