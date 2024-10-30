@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -25,7 +26,8 @@
 <body>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
-    <h1>My First Bootstrap 4 Page</h1>
+    <h1><spring:message code="site.title" /></h1>
+    <h4><spring:message code="site.tel"  arguments="041-3120-3234" /></h4>
     <img src="<c:url value="/img/sm.jpg"/> ">
     <img src="<c:url value='/imgs/car.jpg' />" width="300" height="200" />
     <p>Resize this responsive page to see the effect!</p>
