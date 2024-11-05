@@ -35,7 +35,7 @@ logging:
 # Application Environment Setting
 app:
   url:
-    server-url: http://localhost:81
+    server-url: http://127.0.0.1:81
   dir:
     imgdir: file:/Users/hyoseokseo/dev/springsm/imgs/
     uploaddir: /Users/hyoseokseo/dev/springsm/imgs/

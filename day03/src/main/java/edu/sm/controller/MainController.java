@@ -17,6 +17,10 @@ public class MainController {
 
     @Value("${app.key.wkey}")
     String wkey;
+//    @Value("${app.key.wkey2}")
+//    String wkey2;
+    @Value("${app.url.server-url}")
+    String serverurl;
 
     @RequestMapping("/") // localhost:8099/ 으로 들어오면
     public String main(Model model) {
@@ -45,6 +49,20 @@ public class MainController {
     @RequestMapping("/webcam")
     public String webcam(Model model) {
         model.addAttribute("center", "webcam");
+        return "index";
+    }
+
+    @RequestMapping("/websocket")
+    public String websocket(Model model) {
+        model.addAttribute("serverurl", serverurl);
+        model.addAttribute("center", "websocket");
+        return "index";
+    }
+
+    @RequestMapping("/chat")
+    public String chat(Model model) {
+        model.addAttribute("serverurl", serverurl);
+        model.addAttribute("center", "chat");
         return "index";
     }
 

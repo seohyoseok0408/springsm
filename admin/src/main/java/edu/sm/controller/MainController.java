@@ -18,6 +18,7 @@ public class MainController {
 
     private final AdminService adminService;
 
+    // application.yml 설정된 app.url.server-url을 가져옴
     @Value("${app.url.server-url}")
     String serverUrl;
 

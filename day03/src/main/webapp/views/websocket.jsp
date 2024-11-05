@@ -124,7 +124,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <div class="col-sm-5">
-                    <h1 id="adm_id">${sessionScope.admin.id}</h1>
+                    <h1 id="adm_id">${sessionScope.loginid.custId}</h1>
                     <H1 id="status">Status</H1>
                     <button id="connect">Connect</button>
                     <button id="disconnect">Disconnect</button>

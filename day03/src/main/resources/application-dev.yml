@@ -16,9 +16,9 @@ spring:
     url: jdbc:log4jdbc:mysql://127.0.0.1:3306/smdb?characterEncoding=utf8
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://127.0.0.1:3306/smdb?characterEncoding=utf8
-    username: ENC(1VR3jmaTU5QHEqeAw0Iqxw==)
+    username: ${db.username}
     password: ENC(f0yNs6ribiQd7x6OwNcaQg==)
-
+  # ENC(1VR3jmaTU5QHEqeAw0Iqxw==)
 # Mybatis Setting
 mybatis:
     type-aliases-package: edu.sm.app.dto
@@ -34,6 +34,8 @@ logging:
 
 # Application Environment Setting
 app:
+  url:
+    server-url: http://127.0.0.1:81
   dir:
     imgdir: file:/Users/hyoseokseo/dev/springsm/imgs/
     uploaddir: /Users/hyoseokseo/dev/springsm/imgs/

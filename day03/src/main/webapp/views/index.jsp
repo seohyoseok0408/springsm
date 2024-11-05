@@ -16,6 +16,11 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2ae93544de6dad9ced17f6021bdc6b73"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
 
+    <%-- Web Socket Lib    --%>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+
+
     <style>
         .fakeimg {
             height: 200px;
@@ -90,6 +95,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<c:url value="/webcam"/> ">WebCam</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<c:url value="/websocket"/> ">Websoket</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<c:url value="/chat"/> ">Chat</a>
                 </li>
             </c:if>
         </ul>
