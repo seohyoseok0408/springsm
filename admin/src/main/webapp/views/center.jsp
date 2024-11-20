@@ -219,7 +219,7 @@
     };
     $(function(){
         center.init();
-        // center_websocket.init();
+        center_websocket.init();
     });
 </script>
 

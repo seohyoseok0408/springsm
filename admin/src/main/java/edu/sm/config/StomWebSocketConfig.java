@@ -15,9 +15,12 @@ public class StomWebSocketConfig implements WebSocketMessageBrokerConfigurer{
     public void registerStompEndpoints(StompEndpointRegistry registry) {
 //        registry.addEndpoint("/ws").setAllowedOrigins("http://127.0.0.1").withSockJS();
         // 밑줄에서 *(아스타)는 다른서버에서도 접속 가능하게함. (admin, user)
+        // ws 라는 웹소캣서버를 만듬
         registry.addEndpoint("/ws").setAllowedOriginPatterns("*").withSockJS();
-//        registry.addEndpoint("/chbot").setAllowedOriginPatterns("*").withSockJS();
-//        registry.addEndpoint("/wss").setAllowedOriginPatterns("*").withSockJS();
+        // 관리자와 사용자 간의 통신
+//        registry.addEndpoint("/chat").setAllowedOriginPatterns("*").withSockJS();
+        // 관리자 전용 웹소캣서버
+        registry.addEndpoint("/wss").setAllowedOriginPatterns("*").withSockJS();
     }
 
     // 밖으로 나가는쪽에 대한 설정 (아웃바운드)

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <!--    <property resource="logback.properties" />-->
-    <!--    <property name="LOGS_DIR" value="${logdir}" />-->
-<!--    <springProperty scope="context" name="LOGS_DIR" source="app.dir.logdir"/>-->
-    <property name="LOGS_DIR" value="/Users/hyoseokseo/dev/springsm/logs/" />
+<!--    <springProperty scope="context" name="LOGS_DIR" source="app.dir.readlogdir"/>-->
+
+    <property name="LOGS_DIR" value="/Users/hyoseokseo/dev/springsm/logs" />
+
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
