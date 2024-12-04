@@ -45,3 +45,4 @@ app:
     wkey: ENC(f7bz90L8Gr/foAz20x1NUyyDSeXSNlJdsozKatTP6xlaflUZDkennGbXkffTsvd3cei99EnQNJ+2uuJJjdpiIXPMADl0y+u/QJA9tJkWsu7Z8DZifInShfbjmKRwJoH1+tysHt31aNE=)
     algo: PBEWithMD5AndDES
     skey: mykey
+    kakao_rest_key: a00df883d9f1d3b13f249c9ac15ed696
